@@ -23,12 +23,20 @@ const fileOps = async () => {
       console.log("File written!");
     }
 
-    // read
+    // update
     {
-      //   await fsPromises.appendFile(wite);
+      await fsPromises.appendFile(
+        writtenFilepath,
+        "Hello, world \n\nGod is good!"
+      );
+      console.log("File updated");
     }
 
-    // update
+    // delete
+    {
+      await fsPromises.unlink(writtenFilepath);
+      //   console.log(`There's an end to everything but ${}`)
+    }
   } catch (error) {
     console.error(error);
   }

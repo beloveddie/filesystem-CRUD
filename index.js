@@ -34,15 +34,23 @@ const fileOps = async () => {
     {
       await fsPromises.appendFile(
         writtenFilepath,
-        "Hello, world \n\nGod is good!"
+        "\nHello, world \n\nGod is good!"
       );
       console.log("File updated");
     }
 
     // delete
     {
-      //   await fsPromises.unlink(writtenFilepath);
-      //   console.log(`There's an end to everything but ${}`)
+      console.log(
+        `There's an end to everything but "${content}" was in me! 🙂`
+      );
+      // get updated content
+      let updatedContent = await fsPromises.readFile(writtenFilepath, "utf-8");
+      updatedContent &&
+        console.log(
+          `Hey friend, please hold on 😬, I got an update to "${updatedContent}" 😉😇`
+        );
+      await fsPromises.unlink(writtenFilepath);
     }
   } catch (error) {
     console.error(error);

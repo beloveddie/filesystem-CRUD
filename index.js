@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const FILE_PATH = path.join(__dirname, "files");
+let writtenFilepath = "";
 
 const fileOps = async () => {
   try {
@@ -13,11 +14,19 @@ const fileOps = async () => {
     }
 
     // write
-    await fsPromises.writeFile(
-      path.join(__dirname, "files", "hello.txt"),
-      "Hello world"
-    );
-    console.log("File written!");
+    {
+      await fsPromises.writeFile(
+        path.join(__dirname, "files", "hello.txt"),
+        "Hello world"
+      );
+      writtenFilepath = path.join(__dirname, "files", "hello.txt");
+      console.log("File written!");
+    }
+
+    // read
+    {
+      //   await fsPromises.appendFile(wite);
+    }
 
     // update
   } catch (error) {

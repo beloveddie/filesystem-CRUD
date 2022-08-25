@@ -3,7 +3,8 @@ const fs = require("fs");
 const path = require("path");
 
 const FILE_PATH = path.join(__dirname, "files");
-let writtenFilepath = "";
+let writtenFilepath = "",
+  content = "";
 
 const fileOps = async () => {
   try {
@@ -23,6 +24,12 @@ const fileOps = async () => {
       console.log("File written!");
     }
 
+    // read
+    {
+      content = await fsPromises.readFile(writtenFilepath, "utf8");
+      console.log("Content well read!");
+    }
+
     // update
     {
       await fsPromises.appendFile(
@@ -34,7 +41,7 @@ const fileOps = async () => {
 
     // delete
     {
-      await fsPromises.unlink(writtenFilepath);
+      //   await fsPromises.unlink(writtenFilepath);
       //   console.log(`There's an end to everything but ${}`)
     }
   } catch (error) {
